@@ -192,9 +192,12 @@ define([
         clearTimeout(self.resizeTimeoutId);
       }
 
-      self.resizeTimeoutId = setTimeout(function() {
-        var width = self.ui.player.clientWidth;
-        var overviewWaveformData = self.origWaveformData.resample(width);
+          self.resizeTimeoutId = setTimeout(function() {
+            if (!document.contains(self.ui.player)) {
+              return;
+            }
+            var width = self.ui.player.clientWidth;
+            var overviewWaveformData = self.origWaveformData.resample(width);
 
         self.peaks.emit('resizeEndOverview', width, overviewWaveformData);
         self.peaks.emit('window_resized', width, self.origWaveformData);
