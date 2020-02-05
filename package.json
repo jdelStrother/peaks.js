@@ -33,7 +33,7 @@
   },
   "scripts": {
     "prebuild": "npm run lint",
-    "build": "browserify -d -e ./src/main.js -t deamdify -s peaks | exorcist peaks.js.map | derequire - > peaks.js",
+    "build": "rollup -c rollup.config.js",
     "postbuild": "cp peaks.js demo && cp peaks.js.map demo",
     "doc": "jsdoc --private --destination docs --recurse src",
     "lint": "eslint src/*.js test/**/*.js karma.conf.js",
@@ -46,12 +46,11 @@
     "prepack": "npm run build"
   },
   "devDependencies": {
-    "browserify": "~16.5.0",
+    "@rollup/plugin-commonjs": "^11.0.2",
+    "@rollup/plugin-node-resolve": "^7.1.1",
     "chai": "~4.2.0",
     "deamdify": "~0.3.0",
-    "derequire": "~2.0.3",
     "eslint": "~6.8.0",
-    "exorcist": "~1.0.1",
     "jsdoc": "~3.6.3",
     "karma": "~4.4.1",
     "karma-browserify": "~7.0.0",
@@ -64,6 +63,7 @@
     "karma-safari-launcher": "~1.0.0",
     "karma-spec-reporter": "~0.0.32",
     "mocha": "~7.0.1",
+    "rollup": "^1.31.0",
     "serve": "~11.3.0",
     "sinon": "~8.1.1",
     "sinon-chai": "~3.4.0",
