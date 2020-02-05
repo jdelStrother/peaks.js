@@ -6,11 +6,9 @@
  * @module waveform-points
  */
 
-define([
-  './point',
-  './utils'
-], function(Point, Utils) {
-  'use strict';
+import Point from './point';
+import Utils from './utils';
+  
 
   /**
    * Point parameters.
@@ -294,5 +292,5 @@ define([
     this._peaks.emit('points.remove_all');
   };
 
-  return WaveformPoints;
-});
+  export default WaveformPoints;
+

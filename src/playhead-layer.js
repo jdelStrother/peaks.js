@@ -6,11 +6,9 @@
  * @module playhead-layer
  */
 
-define([
-  './utils',
-  'konva'
-  ], function(Utils, Konva) {
-  'use strict';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates a Konva.Layer that displays a playhead marker.
@@ -282,5 +280,5 @@ define([
     }
   };
 
-  return PlayheadLayer;
-});
+  export default PlayheadLayer;
+

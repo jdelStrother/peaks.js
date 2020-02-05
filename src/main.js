@@ -6,35 +6,20 @@
  * @module main
  */
 
-define([
-  'colors.css',
-  'eventemitter2',
-  './cue-emitter',
-  './waveform-points',
-  './waveform-segments',
-  './keyboard-handler',
-  './player',
-  './marker-factories',
-  './view-controller',
-  './time-controller',
-  './zoom-controller',
-  './waveform-builder',
-  './utils'
-  ], function(
-    Colors,
-    EventEmitter,
-    CueEmitter,
-    WaveformPoints,
-    WaveformSegments,
-    KeyboardHandler,
-    Player,
-    MarkerFactories,
-    ViewController,
-    TimeController,
-    ZoomController,
-    WaveformBuilder,
-    Utils) {
-  'use strict';
+import Colors from 'colors.css';
+import EventEmitter from 'eventemitter2';
+import CueEmitter from './cue-emitter';
+import WaveformPoints from './waveform-points';
+import WaveformSegments from './waveform-segments';
+import KeyboardHandler from './keyboard-handler';
+import Player from './player';
+import MarkerFactories from './marker-factories';
+import ViewController from './view-controller';
+import TimeController from './time-controller';
+import ZoomController from './zoom-controller';
+import WaveformBuilder from './waveform-builder';
+import Utils from './utils';
+  
 
   function buildUi(container) {
     return {
@@ -625,5 +610,5 @@ define([
     }
   };
 
-  return Peaks;
-});
+  export default Peaks;
+

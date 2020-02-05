@@ -6,13 +6,9 @@
  * @module default-segment-marker
  */
 
-define([
-  './utils',
-  'konva'
-  ], function(
-    Utils,
-    Konva) {
-  'use strict';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates a segment marker handle.
@@ -127,5 +123,5 @@ define([
     this._label.setText(Utils.formatTime(time, false));
   };
 
-  return DefaultSegmentMarker;
-});
+  export default DefaultSegmentMarker;
+

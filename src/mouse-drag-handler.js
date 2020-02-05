@@ -6,10 +6,8 @@
  * @module mouse-drag-handler
  */
 
-define([
-  'konva'
-  ], function(Konva) {
-  'use strict';
+import Konva from 'konva';
+  
 
   function getMarkerObject(obj) {
     while (obj.parent !== null) {
@@ -186,5 +184,5 @@ define([
     return this._dragging;
   };
 
-  return MouseDragHandler;
-});
+  export default MouseDragHandler;
+

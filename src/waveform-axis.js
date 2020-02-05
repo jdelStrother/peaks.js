@@ -6,11 +6,9 @@
  * @module waveform-axis
  */
 
-define([
-  './utils',
-  'konva'
-], function(Utils, Konva) {
-  'use strict';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates the waveform axis shapes and adds them to the given view layer.
@@ -145,5 +143,5 @@ define([
     }
   };
 
-  return WaveformAxis;
-});
+  export default WaveformAxis;
+

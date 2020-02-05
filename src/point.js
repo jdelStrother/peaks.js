@@ -6,10 +6,8 @@
  * @module point
  */
 
-define([
-  './utils'
-], function(Utils) {
-  'use strict';
+import Utils from './utils';
+  
 
   function validatePoint(time, labelText) {
     if (!Utils.isValidTime(time)) {
@@ -125,5 +123,5 @@ define([
     return this.time >= startTime && this.time < endTime;
   };
 
-  return Point;
-});
+  export default Point;
+

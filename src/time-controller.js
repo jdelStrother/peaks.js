@@ -6,8 +6,8 @@
  * @module time-controller
  */
 
-define([], function() {
-  'use strict';
+
+  
 
   /**
    * Creates an object to get/set the playback position. This interface is
@@ -35,5 +35,5 @@ define([], function() {
     return this._peaks.player.getCurrentTime();
   };
 
-  return TimeController;
-});
+  export default TimeController;
+

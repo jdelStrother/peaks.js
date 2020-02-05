@@ -6,13 +6,9 @@
  * @module segment-shape
  */
 
-define([
-  './segment-marker',
-  './waveform-shape'
-], function(
-  SegmentMarker,
-  WaveformShape) {
-  'use strict';
+import SegmentMarker from './segment-marker';
+import WaveformShape from './waveform-shape';
+  
 
   /**
    * Creates a waveform segment shape with optional start and end markers.
@@ -252,5 +248,5 @@ define([
     }
   };
 
-  return SegmentShape;
-});
+  export default SegmentShape;
+

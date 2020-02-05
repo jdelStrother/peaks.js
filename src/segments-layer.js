@@ -6,13 +6,9 @@
  * @module segments-layer
  */
 
-define([
-  './segment-shape',
-  'konva'
-], function(
-  SegmentShape,
-  Konva) {
-  'use strict';
+import SegmentShape from './segment-shape';
+import Konva from 'konva';
+  
 
   /**
    * Creates a Konva.Layer that displays segment markers against the audio
@@ -308,5 +304,5 @@ define([
     return this._layer.getHeight();
   };
 
-  return SegmentsLayer;
-});
+  export default SegmentsLayer;
+

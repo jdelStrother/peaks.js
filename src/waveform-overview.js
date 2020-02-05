@@ -6,27 +6,16 @@
  * @module waveform-overview
  */
 
-define([
-  './highlight-layer',
-  './mouse-drag-handler',
-  './playhead-layer',
-  './points-layer',
-  './segments-layer',
-  './waveform-axis',
-  './waveform-shape',
-  './utils',
-  'konva'
-], function(
-  HighlightLayer,
-  MouseDragHandler,
-  PlayheadLayer,
-  PointsLayer,
-  SegmentsLayer,
-  WaveformAxis,
-  WaveformShape,
-  Utils,
-  Konva) {
-  'use strict';
+import HighlightLayer from './highlight-layer';
+import MouseDragHandler from './mouse-drag-handler';
+import PlayheadLayer from './playhead-layer';
+import PointsLayer from './points-layer';
+import SegmentsLayer from './segments-layer';
+import WaveformAxis from './waveform-axis';
+import WaveformShape from './waveform-shape';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates the overview waveform view.
@@ -410,5 +399,5 @@ define([
     }
   };
 
-  return WaveformOverview;
-});
+  export default WaveformOverview;
+

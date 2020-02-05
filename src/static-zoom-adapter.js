@@ -6,10 +6,10 @@
  * @module static-zoom-adapter
  */
 
-define([], function() {
-  'use strict';
 
-  return {
+  
+
+  export default {
     create: function(currentScale, previousScale, view) {
       return {
         start: function(relativePosition) {
@@ -27,4 +27,4 @@ define([], function() {
       };
     }
   };
-});
+

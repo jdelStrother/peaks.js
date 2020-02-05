@@ -6,10 +6,8 @@
  * @module segment-marker
  */
 
-define([
-  'konva'
-  ], function(Konva) {
-  'use strict';
+import Konva from 'konva';
+  
 
   /**
    * Parameters for the {@link SegmentMarker} constructor.
@@ -148,5 +146,5 @@ define([
     this._group.destroy();
   };
 
-  return SegmentMarker;
-});
+  export default SegmentMarker;
+

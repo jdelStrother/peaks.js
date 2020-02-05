@@ -6,10 +6,8 @@
  * @module segment
  */
 
-define([
-  './utils'
-], function(Utils) {
-  'use strict';
+import Utils from './utils';
+  
 
   function validateSegment(startTime, endTime, validationContext) {
     if (!Utils.isValidTime(startTime)) {
@@ -148,5 +146,5 @@ define([
     return this.startTime < endTime && startTime < this.endTime;
   };
 
-  return Segment;
-});
+  export default Segment;
+

@@ -6,29 +6,15 @@
  * @module waveform-zoomview
  */
 
-define([
-  './mouse-drag-handler',
-  './playhead-layer',
-  './points-layer',
-  './segments-layer',
-  './waveform-axis',
-  './waveform-shape',
-  // './animated-zoom-adapter',
-  // './static-zoom-adapter',
-  './utils',
-  'konva'
-  ], function(
-    MouseDragHandler,
-    PlayheadLayer,
-    PointsLayer,
-    SegmentsLayer,
-    WaveformAxis,
-    WaveformShape,
-    // AnimatedZoomAdapter,
-    // StaticZoomAdapter,
-    Utils,
-    Konva) {
-  'use strict';
+import MouseDragHandler from './mouse-drag-handler';
+import PlayheadLayer from './playhead-layer';
+import PointsLayer from './points-layer';
+import SegmentsLayer from './segments-layer';
+import WaveformAxis from './waveform-axis';
+import WaveformShape from './waveform-shape';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates a zoomable waveform view.
@@ -681,5 +667,5 @@ define([
     }
   };
 
-  return WaveformZoomView;
-});
+  export default WaveformZoomView;
+

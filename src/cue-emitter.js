@@ -6,10 +6,8 @@
  * @module cue-emitter
  */
 
-define([
-  './cue'
-], function(Cue) {
-  'use strict';
+import Cue from './cue';
+  
 
   var isHeadless = /HeadlessChrome/.test(navigator.userAgent);
 
@@ -319,5 +317,5 @@ define([
     this._previousTime = -1;
   };
 
-  return CueEmitter;
-});
+  export default CueEmitter;
+

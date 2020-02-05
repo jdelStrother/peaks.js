@@ -6,8 +6,8 @@
  * @module zoom-controller
  */
 
-define([], function() {
-  'use strict';
+
+  
 
   /**
    * Creates an object to control zoom levels in a {@link WaveformZoomView}.
@@ -98,5 +98,5 @@ define([], function() {
     return this._zoomLevels[this._zoomLevelIndex];
   };
 
-  return ZoomController;
-});
+  export default ZoomController;
+

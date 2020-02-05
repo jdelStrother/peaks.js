@@ -6,12 +6,10 @@
  * @module waveform-segments
  */
 
-define([
-  'colors.css',
-  './segment',
-  './utils'
-], function(Colors, Segment, Utils) {
-  'use strict';
+import Colors from 'colors.css';
+import Segment from './segment';
+import Utils from './utils';
+  
 
   /**
    * Segment parameters.
@@ -366,5 +364,5 @@ define([
     this._peaks.emit('segments.remove_all');
   };
 
-  return WaveformSegments;
-});
+  export default WaveformSegments;
+

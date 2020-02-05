@@ -6,8 +6,9 @@
  * @module waveform-shape
  */
 
-define(['./utils', 'konva'], function(Utils, Konva) {
-  'use strict';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Scales the waveform data for drawing on a canvas context.
@@ -201,5 +202,5 @@ define(['./utils', 'konva'], function(Utils, Konva) {
     context.fillStrokeShape(this);
   };
 
-  return WaveformShape;
-});
+  export default WaveformShape;
+

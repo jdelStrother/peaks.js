@@ -6,10 +6,10 @@
  * @module animated-zoom-adapter
  */
 
-define(['konva'], function(Konva) {
-  'use strict';
+import Konva from 'konva';
+  
 
-  return {
+  export default {
 
     /**
      * @param {Number} currentScale
@@ -116,4 +116,4 @@ define(['konva'], function(Konva) {
       };
     }
   };
-});
+

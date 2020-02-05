@@ -6,10 +6,8 @@
  * @module point-marker
  */
 
-define([
-  'konva'
-  ], function(Konva) {
-  'use strict';
+import Konva from 'konva';
+  
 
   /**
    * Parameters for the {@link PointMarker} constructor.
@@ -139,5 +137,5 @@ define([
     this._group.destroy();
   };
 
-  return PointMarker;
-});
+  export default PointMarker;
+

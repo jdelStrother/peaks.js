@@ -6,13 +6,9 @@
  * @module points-layer
  */
 
-define([
-  './point-marker',
-  'konva'
-  ], function(
-    PointMarker,
-    Konva) {
-  'use strict';
+import PointMarker from './point-marker';
+import Konva from 'konva';
+  
 
   /**
    * Creates a Konva.Layer that displays point markers against the audio
@@ -376,5 +372,5 @@ define([
     this._layer.draw();
   };
 
-  return PointsLayer;
-});
+  export default PointsLayer;
+

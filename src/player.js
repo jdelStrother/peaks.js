@@ -6,10 +6,8 @@
  * @module player
  */
 
-define([
-  './utils'
-], function(Utils) {
-  'use strict';
+import Utils from './utils';
+  
 
   /**
    * A wrapper for interfacing with the HTML5 media element API.
@@ -215,5 +213,5 @@ define([
     }, 30);
   };
 
-  return Player;
-});
+  export default Player;
+

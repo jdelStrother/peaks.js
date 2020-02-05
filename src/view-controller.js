@@ -6,15 +6,10 @@
  * @module view-controller
  */
 
-define([
-  './waveform-overview',
-  './waveform-zoomview',
-  './utils'
-  ], function(
-    WaveformOverview,
-    WaveformZoomView,
-    Utils) {
-  'use strict';
+import WaveformOverview from './waveform-overview';
+import WaveformZoomView from './waveform-zoomview';
+import Utils from './utils';
+  
 
   /**
    * Creates an object that allows users to create and manage waveform views.
@@ -139,5 +134,5 @@ define([
     }
   };
 
-  return ViewController;
-});
+  export default ViewController;
+

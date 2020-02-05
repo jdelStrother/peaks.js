@@ -6,15 +6,10 @@
  * @module marker-factories
  */
 
-define([
-  './default-point-marker',
-  './default-segment-marker',
-  'konva'
-  ], function(
-    DefaultPointMarker,
-    DefaultSegmentMarker,
-    Konva) {
-  'use strict';
+import DefaultPointMarker from './default-point-marker';
+import DefaultSegmentMarker from './default-segment-marker';
+import Konva from 'konva';
+  
 
   /**
    * Parameters for the {@link createSegmentMarker} function.
@@ -99,9 +94,9 @@ define([
     return new DefaultPointMarker(options);
   }
 
-  return {
+  export default {
     createSegmentMarker: createSegmentMarker,
     createSegmentLabel: createSegmentLabel,
     createPointMarker: createPointMarker
   };
-});
+

@@ -6,8 +6,8 @@
  * @module utils
  */
 
-define(function() {
-  'use strict';
+
+  
 
   if (typeof Number.isFinite !== 'function') {
     Number.isFinite = function isFinite(value) {
@@ -29,7 +29,7 @@ define(function() {
     return number < 10 ? '0' + number : number;
   }
 
-  return {
+  export default {
 
     /**
      * Returns a formatted time string.
@@ -225,4 +225,4 @@ define(function() {
       return Object.prototype.hasOwnProperty.call(object, field);
     }
   };
-});
+

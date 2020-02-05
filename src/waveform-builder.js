@@ -6,13 +6,9 @@
  * @module waveform-builder
  */
 
- define([
-  'waveform-data',
-  './utils'
-  ], function(
-    WaveformData,
-    Utils) {
-  'use strict';
+ import WaveformData from 'waveform-data';
+import Utils from './utils';
+  
 
   var isXhr2 = ('withCredentials' in new XMLHttpRequest());
 
@@ -346,5 +342,5 @@
     return xhr;
   };
 
-  return WaveformBuilder;
-});
+  export default WaveformBuilder;
+

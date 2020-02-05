@@ -6,8 +6,8 @@
  * @module cue
  */
 
-define(function() {
-  'use strict';
+
+  
 
   /**
    * A cue represents an event to be triggered at some point on the media
@@ -50,5 +50,5 @@ define(function() {
     return a.time - b.time;
   };
 
-  return Cue;
-});
+  export default Cue;
+

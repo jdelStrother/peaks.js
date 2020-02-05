@@ -6,13 +6,9 @@
  * @module default-point-marker
  */
 
-define([
-  './utils',
-  'konva'
-  ], function(
-    Utils,
-    Konva) {
-  'use strict';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates a point marker handle.
@@ -157,5 +153,5 @@ define([
     }
   };
 
-  return DefaultPointMarker;
-});
+  export default DefaultPointMarker;
+

@@ -6,8 +6,8 @@
  * @module keyboard-handler
  */
 
-define([], function() {
-  'use strict';
+
+  
 
   var nodes = ['OBJECT', 'TEXTAREA', 'INPUT', 'SELECT', 'OPTION'];
 
@@ -93,5 +93,5 @@ define([], function() {
     document.removeEventListener('keyup', this._handleKeyEvent);
   };
 
-  return KeyboardHandler;
-});
+  export default KeyboardHandler;
+

@@ -6,13 +6,9 @@
  * @module highlight-layer
  */
 
-define([
-  './utils',
-  'konva'
-], function(
-  Utils,
-  Konva) {
-  'use strict';
+import Utils from './utils';
+import Konva from 'konva';
+  
 
   /**
    * Creates the highlight region that shows the position of the zoomable
@@ -121,5 +117,5 @@ define([
     }
   };
 
-  return HighlightLayer;
-});
+  export default HighlightLayer;
+
