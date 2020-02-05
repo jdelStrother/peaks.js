@@ -6,34 +6,30 @@
  * @module time-controller
  */
 
+/**
+  * Creates an object to get/set the playback position. This interface is
+  * deprecated, use the {@link Player} interface instead.
+  *
+  * @class
+  * @alias TimeController
+  *
+  * @param {Peaks} peaks
+  */
 
-  
+function TimeController(peaks) {
+  this._peaks = peaks;
+}
 
-  /**
-   * Creates an object to get/set the playback position. This interface is
-   * deprecated, use the {@link Player} interface instead.
-   *
-   * @class
-   * @alias TimeController
-   *
-   * @param {Peaks} peaks
-   */
+TimeController.prototype.setCurrentTime = function(time) {
+  // eslint-disable-next-line max-len
+  this._peaks.options.deprecationLogger('peaks.time.setCurrentTime(): this function is deprecated. Call peaks.player.seek() instead');
+  return this._peaks.player.seek(time);
+};
 
-  function TimeController(peaks) {
-    this._peaks = peaks;
-  }
+TimeController.prototype.getCurrentTime = function() {
+  // eslint-disable-next-line max-len
+  this._peaks.options.deprecationLogger('peaks.time.getCurrentTime(): this function is deprecated. Call peaks.player.getCurrentTime() instead');
+  return this._peaks.player.getCurrentTime();
+};
 
-  TimeController.prototype.setCurrentTime = function(time) {
-    // eslint-disable-next-line max-len
-    this._peaks.options.deprecationLogger('peaks.time.setCurrentTime(): this function is deprecated. Call peaks.player.seek() instead');
-    return this._peaks.player.seek(time);
-  };
-
-  TimeController.prototype.getCurrentTime = function() {
-    // eslint-disable-next-line max-len
-    this._peaks.options.deprecationLogger('peaks.time.getCurrentTime(): this function is deprecated. Call peaks.player.getCurrentTime() instead');
-    return this._peaks.player.getCurrentTime();
-  };
-
-  export default TimeController;
-
+export default TimeController;

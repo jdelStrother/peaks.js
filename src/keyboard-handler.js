@@ -6,92 +6,88 @@
  * @module keyboard-handler
  */
 
+var nodes = ['OBJECT', 'TEXTAREA', 'INPUT', 'SELECT', 'OPTION'];
 
-  
+var SPACE = 32,
+    TAB = 9,
+    LEFT_ARROW = 37,
+    RIGHT_ARROW = 39;
 
-  var nodes = ['OBJECT', 'TEXTAREA', 'INPUT', 'SELECT', 'OPTION'];
+var keys = [SPACE, TAB, LEFT_ARROW, RIGHT_ARROW];
 
-  var SPACE = 32,
-      TAB = 9,
-      LEFT_ARROW = 37,
-      RIGHT_ARROW = 39;
+/**
+  * Configures keyboard event handling.
+  *
+  * @class
+  * @alias KeyboardHandler
+  *
+  * @param {EventEmitter} eventEmitter
+  */
 
-  var keys = [SPACE, TAB, LEFT_ARROW, RIGHT_ARROW];
+function KeyboardHandler(eventEmitter) {
+  this.eventEmitter = eventEmitter;
 
-  /**
-   * Configures keyboard event handling.
-   *
-   * @class
-   * @alias KeyboardHandler
-   *
-   * @param {EventEmitter} eventEmitter
-   */
+  this._handleKeyEvent = this._handleKeyEvent.bind(this);
 
-  function KeyboardHandler(eventEmitter) {
-    this.eventEmitter = eventEmitter;
+  document.addEventListener('keydown', this._handleKeyEvent);
+  document.addEventListener('keypress', this._handleKeyEvent);
+  document.addEventListener('keyup', this._handleKeyEvent);
+}
 
-    this._handleKeyEvent = this._handleKeyEvent.bind(this);
+/**
+  * Keyboard event handler function.
+  *
+  * @note Arrow keys only triggered on keydown, not keypress.
+  *
+  * @param {KeyboardEvent} event
+  * @private
+  */
 
-    document.addEventListener('keydown', this._handleKeyEvent);
-    document.addEventListener('keypress', this._handleKeyEvent);
-    document.addEventListener('keyup', this._handleKeyEvent);
-  }
+KeyboardHandler.prototype._handleKeyEvent = function handleKeyEvent(event) {
+  if (nodes.indexOf(event.target.nodeName) === -1) {
+    if (keys.indexOf(event.type) > -1) {
+      event.preventDefault();
+    }
 
-  /**
-   * Keyboard event handler function.
-   *
-   * @note Arrow keys only triggered on keydown, not keypress.
-   *
-   * @param {KeyboardEvent} event
-   * @private
-   */
+    if (event.type === 'keydown' || event.type === 'keypress') {
+      switch (event.keyCode) {
+        case SPACE:
+          this.eventEmitter.emit('keyboard.space');
+          break;
 
-  KeyboardHandler.prototype._handleKeyEvent = function handleKeyEvent(event) {
-    if (nodes.indexOf(event.target.nodeName) === -1) {
-      if (keys.indexOf(event.type) > -1) {
-        event.preventDefault();
-      }
-
-      if (event.type === 'keydown' || event.type === 'keypress') {
-        switch (event.keyCode) {
-          case SPACE:
-            this.eventEmitter.emit('keyboard.space');
-            break;
-
-          case TAB:
-            this.eventEmitter.emit('keyboard.tab');
-            break;
-        }
-      }
-      else if (event.type === 'keyup') {
-        switch (event.keyCode) {
-          case LEFT_ARROW:
-            if (event.shiftKey) {
-              this.eventEmitter.emit('keyboard.shift_left');
-            }
-            else {
-              this.eventEmitter.emit('keyboard.left');
-            }
-            break;
-
-          case RIGHT_ARROW:
-            if (event.shiftKey) {
-              this.eventEmitter.emit('keyboard.shift_right');
-            }
-            else {
-              this.eventEmitter.emit('keyboard.right');
-            }
-            break;
-        }
+        case TAB:
+          this.eventEmitter.emit('keyboard.tab');
+          break;
       }
     }
-  };
+    else if (event.type === 'keyup') {
+      switch (event.keyCode) {
+        case LEFT_ARROW:
+          if (event.shiftKey) {
+            this.eventEmitter.emit('keyboard.shift_left');
+          }
+          else {
+            this.eventEmitter.emit('keyboard.left');
+          }
+          break;
 
-  KeyboardHandler.prototype.destroy = function() {
-    document.removeEventListener('keydown', this._handleKeyEvent);
-    document.removeEventListener('keypress', this._handleKeyEvent);
-    document.removeEventListener('keyup', this._handleKeyEvent);
-  };
+        case RIGHT_ARROW:
+          if (event.shiftKey) {
+            this.eventEmitter.emit('keyboard.shift_right');
+          }
+          else {
+            this.eventEmitter.emit('keyboard.right');
+          }
+          break;
+      }
+    }
+  }
+};
 
-  export default KeyboardHandler;
+KeyboardHandler.prototype.destroy = function() {
+  document.removeEventListener('keydown', this._handleKeyEvent);
+  document.removeEventListener('keypress', this._handleKeyEvent);
+  document.removeEventListener('keyup', this._handleKeyEvent);
+};
 
+export default KeyboardHandler;
