@@ -8,6 +8,7 @@
 
 // v1
 
+// v2
 define([
   'eventemitter3',
   './cue-emitter',
