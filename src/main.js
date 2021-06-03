@@ -6,6 +6,8 @@
  * @module main
  */
 
+// v1
+
 define([
   'eventemitter3',
   './cue-emitter',
