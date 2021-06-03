@@ -129,21 +129,33 @@ define([
 
     self._syncPlayhead(time);
 
+    var dragSegmentId = "peaks.zoomview.drag-segment"
     self._mouseDragHandler = new MouseDragHandler(self._stage, {
       onMouseDown: function(/* mousePosX */) {
         this.initialFrameOffset = self._frameOffset;
       },
 
-      // eslint-disable-next-line no-unused-vars
       onMouseMove: function(mousePosX, offset) {
-        // Moving the mouse to the left increases the time position of the
-        // left-hand edge of the visible waveform.
-        var diff = -offset;
+        var pixelIndex = self._frameOffset + Math.floor(mousePosX)
+        var t = self.pixelsToTime(pixelIndex);
 
-        self._updateWaveform(this.initialFrameOffset + diff);
+        var segment = self._peaks.segments.getSegment(dragSegmentId)
+        if (!segment) {
+          self._peaks.segments.add({startTime: t, endTime: t, id: dragSegmentId });
+        } else if (offset < 0) {
+          segment.update({ startTime: t });
+        } else {
+          segment.update({ endTime: t });
+        }
       },
 
       onMouseUp: function(mousePosX) {
+        var segment = self._peaks.segments.getSegment(dragSegmentId);
+        if (segment) {
+          self._peaks.emit("segments.drag-segment-complete", segment)
+          self._peaks.segments.removeById(dragSegmentId)
+        }
+
         // Set playhead position only on click release, when not dragging.
         if (!self._mouseDragHandler.isDragging()) {
           var pixelIndex = self._frameOffset + Math.floor(mousePosX);
