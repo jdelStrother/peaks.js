@@ -72,7 +72,11 @@ declare module 'peaks.js' {
   }
   interface SeparateViewOptions {
     zoomview?: SharedViewOptions & {
+      dragBehavior?: "scroll" | "create-segment" | "none";
       wheelMode?: "none" | "scroll";
+      // A callback to customize newly-created segments on drag.
+      // Return null to cancel.
+      dragSegmentAttributes?: (attrs: SegmentAddOptions) => SegmentAddOptions | null;
     };
     overview?: SharedViewOptions & {
       highlightColor?: string;
