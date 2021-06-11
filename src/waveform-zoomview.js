@@ -129,22 +129,64 @@ define([
 
     self._syncPlayhead(time);
 
+    var dragBehavior = self._viewOptions.dragBehavior;
+
     self._mouseDragHandler = new MouseDragHandler(self._stage, {
       onMouseDown: function(mousePosX) {
         this.initialFrameOffset = self._frameOffset;
         this.mouseDownX = mousePosX;
+        this.dragSegmentId = null;
       },
 
       onMouseMove: function(mousePosX) {
         // Moving the mouse to the left increases the time position of the
         // left-hand edge of the visible waveform.
         var diff = this.mouseDownX - mousePosX;
-        var newFrameOffset = this.initialFrameOffset + diff;
 
-        self._updateWaveform(newFrameOffset);
+        if (dragBehavior === 'scroll') {
+          self._updateWaveform(this.initialFrameOffset + diff);
+        }
+        else if (dragBehavior === 'create-segment') {
+          var t = self.pixelOffsetToTime(mousePosX);
+
+          if (!this.dragSegmentId) {
+            var attrs = { startTime: t, endTime: t, editable: true };
+
+            if (self._viewOptions.dragSegmentAttributes) {
+              attrs = self._viewOptions.dragSegmentAttributes(attrs);
+            }
+            if (attrs) {
+              var newSegment = self._peaks.segments.add(attrs);
+
+              this.dragSegmentId = newSegment.id;
+            }
+          }
+
+          var segment = this.getDragSegment();
+          var timeAtMouseDown = self.pixelOffsetToTime(this.mouseDownX);
+          var startMarker = diff > 0;
+          var startTime, endTime;
+
+          if (startMarker) {
+            startTime = t;
+            endTime = timeAtMouseDown;
+          }
+          else {
+            startTime = timeAtMouseDown;
+            endTime = t;
+          }
+
+          segment.update({ startTime: startTime, endTime: endTime });
+        }
       },
 
       onMouseUp: function(/* mousePosX */) {
+        if (this.dragSegmentId) {
+          var segment = this.getDragSegment();
+
+          self._peaks.emit('segments.drag-segment-complete', segment);
+        }
+
         // Set playhead position only on click release, when not dragging.
         if (!self._mouseDragHandler.isDragging()) {
           var time = self.pixelOffsetToTime(this.mouseDownX);
@@ -160,6 +202,16 @@ define([
 
           self._peaks.player.seek(time);
         }
+      },
+
+      getDragSegment: function() {
+        var segment = self._peaks.segments.getSegment(this.dragSegmentId);
+
+        if (!segment) {
+          throw new Error("Couldn't find drag-segment");
+        }
+
+        return segment;
       }
     });
 

@@ -92,6 +92,7 @@ define([
   };
 
   var defaultZoomviewOptions = {
+    dragBehavior:        'scroll',
     // showPlayheadTime:    true,
     waveformColor:       'rgba(0, 225, 128, 1)',
     wheelMode:           'none'
@@ -192,7 +193,9 @@ define([
       'fontFamily',
       'fontSize',
       'fontStyle',
-      'wheelMode'
+      'wheelMode',
+      'dragBehavior',
+      'dragSegmentAttributes'
     ];
 
     optNames.forEach(function(optName) {
