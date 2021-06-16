@@ -164,16 +164,20 @@ define([
           }
 
           var segment = this.getDragSegment();
+          var startMarker = diff > 0
 
-          segment.update(diff > 0 ? { startTime: t } : { endTime: t });
+          segment.update(startMarker ? { startTime: t } : { endTime: t });
+          self._peaks.emit('segments.dragged', segment, startMarker);
         }
       },
 
-      onMouseUp: function(/* mousePosX */) {
+      onMouseUp: function(mousePosX) {
         if (this.dragSegmentId) {
           var segment = this.getDragSegment();
+          var diff = this.mouseDownX - mousePosX;
+          var startMarker = diff > 0
 
-          self._peaks.emit('segments.drag-segment-complete', segment);
+          self._peaks.emit('segments.dragend', segment, startMarker);
         }
 
         // Set playhead position only on click release, when not dragging.
